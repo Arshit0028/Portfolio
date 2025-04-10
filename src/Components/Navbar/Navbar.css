@@ -58,9 +58,9 @@
     .nav-mob-close{
         display: block;
         position: relative;
-        top:30px;
-        left: 290px;
-        width: 30px;  
+        top: 30px;
+        right: 30px;
+        width: 30px;
     }
     .nav-menu{
         position: fixed;
