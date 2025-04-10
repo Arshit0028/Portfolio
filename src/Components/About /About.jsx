@@ -55,19 +55,19 @@ const About = () => {
           <img src={theme_pattern} alt="" />
         </div>
        <div className="about-achievments">
-        <div className="about-achievment">
+      <div className="about-achievment">
           <h1>Certifications of JAVASCRIPT</h1>
-          <p>working</p>
+          <p>I learned JavaScript from AlmaBetter, and it significantly boosted my coding skills!</p>
         </div>
         <hr />
         <div className="about-achievment">
           <h1>Certification of HTML & CSS</h1>
-          <p>working</p>
+          <p>I learned HTML and CSS from AlmaBetter, which greatly improved my web development skills!</p>
         </div>
         <hr />
         <div className="about-achievment">
           <h1>Certification of FULL STACK JAVA DEVLOPMENT</h1>
-          <p>working</p>
+          <p>I earned my Full Stack Java Development certification from Simplilearn, enhancing my programming expertise!</p>
         </div>
         <hr />
        </div>
