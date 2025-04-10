@@ -50,7 +50,7 @@ const About = () => {
           </div>
         </div>
       </div>
-        <div className="about-heading">
+        <div id= "portfolio" className="about-heading">
           <h1>My Certifications</h1>
           <img src={theme_pattern} alt="" />
         </div>

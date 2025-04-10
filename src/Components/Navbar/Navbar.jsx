@@ -7,7 +7,7 @@ import menu_close from "../../assets/menu_close.svg"
 
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
-const Navbar = () => {
+ const Navbar = () => {
   const [menu, setMenu] = useState("home");
   const menuRef = useRef(null);
 
@@ -32,31 +32,31 @@ const Navbar = () => {
       <ul ref={menuRef} className="nav-menu">
         <img src={menu_close} alt="Close Menu" className="nav-mob-close" onClick={closeMenu} />
         <li>
-          <AnchorLink className="anchor_link" offset={50} href="home">
+          <AnchorLink className="anchor-link"   href="#home">
             <p onClick={() => setMenu("home")}>Home</p>
           </AnchorLink>
           {menu === "home" ? <img src={nav_underline} alt="Underline" /> : null}
         </li>
         <li>
-          <AnchorLink className="anchor_link" offset={50} href="about">
+          <AnchorLink className="anchor-link" offset={50} href="#about">
             <p onClick={() => setMenu("about")}>About Me</p>
           </AnchorLink>
           {menu === "about" ? <img src={nav_underline} alt="Underline" /> : null}
         </li>
         <li>
-          <AnchorLink className="anchor_link" offset={50} href="services">
+          <AnchorLink className="anchor-link" offset={50} href="#services">
             <p onClick={() => setMenu("services")}>Services</p>
           </AnchorLink>
           {menu === "services" ? <img src={nav_underline} alt="Underline" /> : null}
         </li>
         <li>
-          <AnchorLink className="anchor_link" offset={50} href="portfolio">
+          <AnchorLink className="anchor-link" offset={50} href="#portfolio">
             <p onClick={() => setMenu("portfolio")}>Portfolio</p>
           </AnchorLink>
           {menu === "portfolio" ? <img src={nav_underline} alt="Underline" /> : null}
         </li>
         <li>
-          <AnchorLink className="anchor_link" offset={50} href="contact">
+          <AnchorLink className="anchor-link" offset={50} href="#contact">
             <p onClick={() => setMenu("contact")}>Contact</p>
           </AnchorLink>
           {menu === "contact" ? <img src={nav_underline} alt="Underline" /> : null}
