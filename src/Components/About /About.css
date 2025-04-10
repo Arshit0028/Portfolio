@@ -83,7 +83,7 @@
     margin-bottom: 80px;
 }
 .about-achievment{
-    display: flex;
+    display: table-column;
     flex-direction: column;
     gap: 40px;
     width: 25%;
