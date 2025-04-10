@@ -75,14 +75,15 @@
     height: 100px;
     z-index: -1;
 }
-.about-achievments{
+.about-achievments {
     display: flex;
     width: 100%;
     gap: 50px;
     justify-content: space-around;
     margin-bottom: 80px;
 }
-.about-achievment{
+
+.about-achievment {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -91,26 +92,30 @@
     transition: 0.5s;
 }
 
-.about-achievment h1{
-    font-size:35px ;
+.about-achievment h1 {
+    font-size: 35px;
     font-weight: 600;
-    background: linear-gradient(270deg, #df8908 50.41%, #b415ff );
+    background: linear-gradient(270deg, #df8908 50.41%, #b415ff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.about-achievment p{
+
+.about-achievment p {
     font-size: 22px;
-    font-weight: 500;;
+    font-weight: 500;
 }
-.about-achieves{
+
+.about-achieves {
     display: flex;
+    flex-direction: column;
     width: 100%;
     gap: 50px;
     justify-content: space-around;
     margin-bottom: 80px;
 }
-.about-achieve{
+
+.about-achieve {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -118,17 +123,19 @@
     align-items: center;
     transition: 0.5s;
 }
-.about-achieve h1{
-    font-size:35px ;
+
+.about-achieve h1 {
+    font-size: 35px;
     font-weight: 600;
-    background: linear-gradient(270deg, #df8908 50.41%, #b415ff );
+    background: linear-gradient(270deg, #df8908 50.41%, #b415ff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.about-achieve p{
+
+.about-achieve p {
     font-size: 22px;
-    font-weight: 500;;
+    font-weight: 500;
 }
 .about-skill:hover{
     transform: scale(1.05);
