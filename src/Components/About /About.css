@@ -58,7 +58,7 @@
     width: 50px;
     height: 8px;
     border-radius:50px;
-    background: linear-gradient(264deg, #df8908 -5.09%, #b415ff 100%);
+    background:linear-gradient(250deg, #f99cd5 10%, #A4508B 100%);
 }
 .about-heading{
     display: flex;
@@ -73,6 +73,7 @@
     position: absolute;
     width: 100px;
     height: 100px;
+    right:10px;
     z-index: -1;
 }
 .about-achievments{
@@ -92,15 +93,15 @@
 }
 
 .about-achievment h1{
-    font-size:35px ;
-    font-weight: 600;
-    background: linear-gradient(270deg, #df8908 50.41%, #b415ff );
+    font-size:30px ;
+    font-weight: 500;
+    background: linear-gradient(250deg, #f99cd5 100%, #A4508B 30%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .about-achievment p{
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;;
 }
 .about-achieves{
@@ -119,17 +120,18 @@
     transition: 0.5s;   
 }
 .about-achieve h1{
-    font-size:35px ;
-    font-weight: 600;
-    margin: -40px;
-    background: linear-gradient(270deg, #df8908 50.41%, #b415ff );
+    font-size:30px ;
+    font-weight: 500;
+    margin:10px;
+    background: linear-gradient(250deg, #f99cd5 100%, #A4508B 30%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .about-achieve p{
-    font-size: 22px;
-    font-weight: 500;;
+    font-size: 18px;
+    font-weight: 500;
+    color: cornsilk;
 }
 
 .about-skill:hover{

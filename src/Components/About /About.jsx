@@ -66,7 +66,7 @@ const About = () => {
         </div>
         <hr />
         <div className="about-achievment">
-          <h1>Certification of FULL STACK JAVA DEVLOPMENT</h1>
+          <h1>Certification of Full Stack Java Devlopment</h1>
           <p>I earned my Full Stack Java Development certification from Simplilearn, enhancing my programming expertise!</p>
         </div>
         <hr />
@@ -78,7 +78,7 @@ const About = () => {
           </div>
           <hr />
           <div className="about-achieve">
-            <h1>Certification of Advance Python/</h1>
+            <h1>Certification of Advance Python</h1>
             <p>I just earned my Advanced Python Programming certification from TechGyan! Thrilled to enhance my skills!</p>
           </div>
           <hr />
