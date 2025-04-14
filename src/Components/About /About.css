@@ -146,53 +146,81 @@
     transform: scale(1.12);
     transition: 0.5s;
 }
-@media(max-width:768px){
-    .about{
-        gap: 80px;
-        margin: 50px 70px;
-        align-items: start;
+@media (max-width: 768px) {
+    .about {
+      margin: 40px 20px;
+      gap: 50px;
     }
-    .about-title h1{
-        font-size: 50px;
-        padding: 0;
+  
+    .about-title h1 {
+      font-size: 40px;
+      padding: 0 15px;
+      text-align: center;
     }
-    .about-title img{
-        width: 130px;
-        right: -20px;
+  
+    .about-title img {
+      width: 60px;
+      height: 60px;
     }
-    .about-sections{
-        flex-direction: column;
+  
+    .about-sections {
+      flex-direction: column;
+      gap: 40px;
     }
-    .about-left{
-        display: none;
+  
+    .about-para {
+      font-size: 18px;
+      gap: 15px;
     }
-    .about-para{
-        font-size: 18px;
-        line-height: 32px;
+  
+    .about-heading {
+      font-size: 24px;
+      padding: 0 15px;
     }
-    .about-skill{
-        gap: 20px;
-        align-items: center;
+  
+    .about-heading img {
+      width: 60px;
+      height: 60px;
+      right: 5px;
     }
-    .about-skill p{
-        font-size: 20px;
+  
+    .about-skill p {
+      font-size: 18px;
+      min-width: auto;
     }
-    .about-skill hr{
-        height: 6px;
+  
+    .about-skill hr {
+      width: 100%;
+      height: 6px;
     }
-    .about-achievments{
-        justify-content: space-between;
+  
+    .about-right {
+      gap: 40px;
     }
-    .about-achievment{
-        gap: 4px;
+  
+    .about-achievments,
+    .about-achieves {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
     }
-    .about-achievment h1{
-        font-size: 30px;
-        width: auto;
-        font-weight: 700;
+  
+    .about-achievment,
+    .about-achieve {
+      width: 100%;
+      gap: 20px;
     }
-    .about-achievment p{
-        text-align: center;
-        font-size: 16px;
+  
+    .about-achievment h1,
+    .about-achieve h1 {
+      font-size: 24px;
+      text-align: center;
     }
-}
+  
+    .about-achievment p,
+    .about-achieve p {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+  
