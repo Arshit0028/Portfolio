@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import Logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.svg"
 import user_icon from "../../assets/user_icon.svg";
 
 const Footer = () => {
@@ -8,7 +8,7 @@ return (
     <div className="footer">
         <div className="footer-top">
             <div className="footer-top-left">
-                <img src={Logo} alt="Logo" height={100} />
+                <img src={logo} alt="Logo" height={100} />
                 <p>
                     Hey everyone! 👋 I’m a passionate full-stack developer with a love
                     for creating interactive web applications.
