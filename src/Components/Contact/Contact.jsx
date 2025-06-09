@@ -1,78 +1,107 @@
-import React from "react";
-import "./Contact.css";
-import theme_pattern from "../../assets/theme_pattern.svg";
-import mail_icon from "../../assets/mail_icon.svg";
-import call_icon from "../../assets/call_icon.svg";
-import location_icon from "../../assets/location_icon.svg";
+import React from 'react';
+import { motion } from 'framer-motion';
+import './Contact.css';
 
 const Contact = () => {
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-
-    formData.append("access_key", "a8a59a56-d6ca-41b4-99ed-577d913a9e21");
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: json
-    }).then((res) => res.json());
-
-    if (res.success) {
-      alert (res.message);
-      console.log("Success", res);
-    } 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
   };
 
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your form submission logic here
+  };
 
   return (
-    <div id="contact" className="contact">
-      <div className="contact-title">
-        <h1>Get in Touch</h1>
-        <img src={theme_pattern} alt="Decorative pattern" />
+    <section className="contact-section" id="contact">
+      <div className="contact-container">
+        <motion.div 
+          className="contact-content"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div className="section-header" variants={itemVariants}>
+            <h2 className="section-title">Get In Touch</h2>
+            <p className="section-description">
+              Have a project in mind or want to discuss potential opportunities? 
+              I'd love to hear from you. Let's create something amazing together.
+            </p>
+          </motion.div>
+
+          <div className="contact-grid">
+            <motion.div className="contact-info" variants={itemVariants}>
+              <div className="info-card">
+                <i className="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>arshitdhiman@gmail.com</p>
+              </div>
+              <div className="info-card">
+                <i className="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Delhi, India</p>
+              </div>
+              <div className="info-card">
+                <i className="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+91 9876543210</p>
+              </div>
+            </motion.div>
+
+            <motion.form 
+              className="contact-form"
+              variants={itemVariants}
+              onSubmit={handleSubmit}
+            >
+              <div className="form-group">
+                <input type="text" placeholder="Your Name" required />
+                <span className="focus-border"></span>
+              </div>
+              <div className="form-group">
+                <input type="email" placeholder="Your Email" required />
+                <span className="focus-border"></span>
+              </div>
+              <div className="form-group">
+                <input type="text" placeholder="Subject" required />
+                <span className="focus-border"></span>
+              </div>
+              <div className="form-group">
+                <textarea placeholder="Your Message" required></textarea>
+                <span className="focus-border"></span>
+              </div>
+              <motion.button 
+                type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Send Message
+                <i className="fas fa-paper-plane"></i>
+              </motion.button>
+            </motion.form>
+          </div>
+        </motion.div>
       </div>
-      <div className="contact-section">
-        <div className="contact-left">
-          <h1>Let's Talk</h1>
-          <p>
-            I am currently available for new opportunities and would love to
-            connect! Feel free to Contact 
-          </p>
-            <div className="contact-details">
-            <div className="contact-detail">
-                <img src={mail_icon} alt="" /> 
-                <p>iamarshit2328@gmail.com</p>               
-            </div>
-            <div className="contact-detail">
-                <img src={call_icon} alt="" />
-                <p> +91 83520-15927 </p>
-            </div>
-            <div className="contact-detail">
-                <img src={location_icon} alt="" />
-                <p>HAMIRPUR , HIMACHAL PRADESH ,PIN-176041 </p>
-            </div>
-            </div>
-        </div>
-        <form onSubmit={onSubmit} className="contact-right">
-            <label htmlFor="">Your Name</label>
-            <input type="" placeholder="Enter your name" name="name" />
-            <label htmlFor="">Your Email</label>
-            <input type="" placeholder="Enter your email" name="email" />
-            <label htmlFor="">Write Your Message here</label>
-            <textarea name="message" rows='8' placeholder="Enter Your Message"></textarea>
-            <button type="submit" className="contact-submit">
-                Submit now
-            </button>
-        </form>
-      </div>
-    </div>
+    </section>
   );
 };
 

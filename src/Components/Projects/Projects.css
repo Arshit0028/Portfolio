@@ -1,0 +1,244 @@
+.projects-section {
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #1c1c2b 0%, #0a0a0f 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(9, 132, 227, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.projects-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.projects-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(145deg, #0984e3, #0873c4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  letter-spacing: -1px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(145deg, #0984e3, #0873c4);
+  border-radius: 2px;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #a0a0a0;
+  margin-top: 2rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--project-color);
+  opacity: 0.05;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--project-color);
+}
+
+.project-card:hover::before {
+  opacity: 0.1;
+}
+
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.1);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-link {
+  color: #ffffff;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 50%;
+  background: var(--project-color);
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover {
+  transform: scale(1.1);
+}
+
+.project-content {
+  padding: 2rem;
+}
+
+.project-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.project-description {
+  color: #a0a0a0;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tech-tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  background: var(--project-color);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .section-description {
+    font-size: 1.1rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-image {
+    height: 200px;
+  }
+
+  .project-content {
+    padding: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.4rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+  }
+} 
