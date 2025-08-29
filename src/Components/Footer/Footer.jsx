@@ -10,10 +10,7 @@ const Footer = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.6, ease: 'easeOut' }
     }
   };
 
@@ -34,6 +31,7 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
+          {/* Top Section */}
           <div className="footer-top">
             <div className="footer-brand">
               <h2>Arshit Dhiman</h2>
@@ -60,6 +58,7 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Bottom Section */}
           <div className="footer-bottom">
             <div className="social-links">
               {socialLinks.map((link, index) => (
@@ -68,8 +67,8 @@ const Footer = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <i className={link.icon}></i>
                 </motion.a>

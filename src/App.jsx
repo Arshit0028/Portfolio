@@ -1,21 +1,23 @@
-import React, { Suspense, lazy } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
+import React, { Suspense, lazy } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Lazy load components
-const Navbar = lazy(() => import('./Components/Navbar/Navbar.jsx'))
-const Hero = lazy(() => import('./Components/Hero/Hero.jsx'))
-const About = lazy(() => import('./Components/About/About.jsx'))
-const Services = lazy(() => import('./Components/Services/Services.jsx'))
-const Projects = lazy(() => import('./Components/Projects/Projects.jsx'))
-const Contact = lazy(() => import('./Components/Contact/Contact.jsx'))
-const Footer = lazy(() => import('./Components/Footer/Footer.jsx'))
+const Navbar = lazy(() => import("./Components/Navbar/Navbar.jsx"));
+const Hero = lazy(() => import("./Components/Hero/Hero.jsx"));
+const About = lazy(() => import("./Components/About/About.jsx"));
+const Services = lazy(() => import("./Components/Services/Services.jsx"));
+const Projects = lazy(() => import("./Components/Projects/Projects.jsx"));
+const Contact = lazy(() => import("./Components/Contact/Contact.jsx"));
+const Footer = lazy(() => import("./Components/Footer/Footer.jsx"));
 
 // Loading component
 const LoadingFallback = () => (
   <div className="loading-container">
     <div className="loading-spinner"></div>
   </div>
-)
+);
 
 // Error fallback component
 const ErrorFallback = ({ error }) => (
@@ -23,7 +25,7 @@ const ErrorFallback = ({ error }) => (
     <h2>Something went wrong:</h2>
     <pre>{error.message}</pre>
   </div>
-)
+);
 
 const App = () => {
   return (
@@ -52,9 +54,12 @@ const App = () => {
             <Footer />
           </Suspense>
         </Suspense>
+
+        {/* ✅ Toast notifications work globally */}
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </ErrorBoundary>
-  )
-}
+  );
+};
 
-export default App
+export default App;

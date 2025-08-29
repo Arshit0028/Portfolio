@@ -5,18 +5,18 @@ import "./Projects.css";
 const Projects = () => {
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, product management, and payment integration.",
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      link: "#",
+      title: "MediGo",
+      description: "🚑 MediGo is a modern doctor appointment booking platform that helps patients connect with doctors, book appointments, and manage their healthcare with ease.💙 It offers secure authentication, real-time availability, and smooth payment integration for a hassle-free experience.",
+      image: "/medigo.png",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe" , "Razorpay" , "JWT" , "Framer Motion" , "JavaScript" , "Tailwind CSS" , "HTML" , "Netlify" , "Git/Github"],
+      link: "https://medigoo.netlify.app/",
       color: "#0984e3"
     },
     {
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates, team features, and progress tracking.",
-      image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?ixlib=rb-4.0.3",
-      technologies: ["React", "Firebase", "Material-UI", "Redux"],
+      title: "My Portfolio",
+      description: "I’m a Full Stack Developer who enjoys creating dynamic and scalable web applications. Skilled in the MERN stack, I specialize in building smooth user experiences with clean, maintainable code. Always eager to learn and explore new technologies, I aim to deliver impactful digital solutions.",
+      image: "/portfolio.png",
+      technologies: ["React", "HTML", "Material-UI", "CSS" , "JavaScript" , "Framer Motion" , "Node.js" , "Git/Github" , "Netlify"],
       link: "#",
       color: "#00b894"
     },
