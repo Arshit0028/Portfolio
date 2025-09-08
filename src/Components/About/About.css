@@ -1,6 +1,6 @@
 .about-section {
   padding: 6rem 0;
-  background: linear-gradient(to bottom, #1c1c2b, #0a0a0f);
+  background: #0a0a0f; /* Dark solid background */
   color: #ffffff;
   min-height: 100vh;
   display: flex;
@@ -22,9 +22,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  background: linear-gradient(145deg, #0984e3, #0873c4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #38bdf8; /* Eye-soothing blue */
   position: relative;
 }
 
@@ -35,7 +33,7 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(145deg, #0984e3, #0873c4);
+  background: #38bdf8; /* Matching underline */
   border-radius: 2px;
 }
 
@@ -88,17 +86,17 @@
   width: 100%;
   height: 100%;
   background: var(--skill-color);
-  opacity: 0.1;
+  opacity: 0.05;
   transition: opacity 0.3s ease;
 }
 
 .skill-item:hover::before {
-  opacity: 0.2;
+  opacity: 0.15;
 }
 
 .skill-icon {
   font-size: 2.5rem;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
 }
 
 .skill-name {
@@ -131,7 +129,7 @@
   top: 0;
   height: 100%;
   width: 2px;
-  background: linear-gradient(to bottom, #0984e3, #0873c4);
+  background: #38bdf8; /* Timeline line color */
 }
 
 .timeline-item {
@@ -147,8 +145,8 @@
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background: #0984e3;
-  box-shadow: 0 0 10px rgba(9, 132, 227, 0.5);
+  background: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
 }
 
 .timeline-content {
@@ -166,7 +164,7 @@
 }
 
 .timeline-company {
-  color: #0984e3;
+  color: #38bdf8;
   font-weight: 500;
   margin-bottom: 0.5rem;
 }
@@ -224,12 +222,12 @@
   width: 100%;
   height: 100%;
   background: var(--cert-color);
-  opacity: 0.1;
+  opacity: 0.05;
   transition: opacity 0.3s ease;
 }
 
 .certification-item:hover::before {
-  opacity: 0.2;
+  opacity: 0.15;
 }
 
 .certification-icon {
@@ -329,4 +327,4 @@
   .certification-description {
     font-size: 0.9rem;
   }
-} 
+}

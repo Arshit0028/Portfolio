@@ -3,7 +3,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Lazy load components
+// Lazy load all components
 const Navbar = lazy(() => import("./Components/Navbar/Navbar.jsx"));
 const Hero = lazy(() => import("./Components/Hero/Hero.jsx"));
 const About = lazy(() => import("./Components/About/About.jsx"));
@@ -12,7 +12,7 @@ const Projects = lazy(() => import("./Components/Projects/Projects.jsx"));
 const Contact = lazy(() => import("./Components/Contact/Contact.jsx"));
 const Footer = lazy(() => import("./Components/Footer/Footer.jsx"));
 
-// Loading component
+// Loading fallback (can add animation here)
 const LoadingFallback = () => (
   <div className="loading-container">
     <div className="loading-spinner"></div>
@@ -30,34 +30,31 @@ const ErrorFallback = ({ error }) => (
 const App = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div className="app">
-        <Suspense fallback={<LoadingFallback />}>
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="app">
           <Navbar />
           <main>
-            <Suspense fallback={<LoadingFallback />}>
-              <Hero />
-            </Suspense>
-            <Suspense fallback={<LoadingFallback />}>
-              <About />
-            </Suspense>
-            <Suspense fallback={<LoadingFallback />}>
-              <Services />
-            </Suspense>
-            <Suspense fallback={<LoadingFallback />}>
-              <Projects />
-            </Suspense>
-            <Suspense fallback={<LoadingFallback />}>
-              <Contact />
-            </Suspense>
+            <Hero />
+            <About />
+            <Services />
+            <Projects />
+            <Contact />
           </main>
-          <Suspense fallback={<LoadingFallback />}>
-            <Footer />
-          </Suspense>
-        </Suspense>
+          <Footer />
 
-        {/* ✅ Toast notifications work globally */}
-        <ToastContainer position="top-right" autoClose={3000} />
-      </div>
+          {/* Toast notifications globally */}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            pauseOnHover
+            draggable
+            theme="dark"
+          />
+        </div>
+      </Suspense>
     </ErrorBoundary>
   );
 };

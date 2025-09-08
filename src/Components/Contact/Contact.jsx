@@ -18,11 +18,7 @@ const Contact = () => {
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   const handleSubmit = async (e) => {
@@ -64,7 +60,7 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          {/* Contact Cards + Form */}
+          {/* Contact Grid */}
           <div className="contact-grid">
             {/* Info Cards */}
             <motion.div className="contact-info" variants={itemVariants}>
@@ -107,16 +103,15 @@ const Contact = () => {
               <motion.button
                 type="submit"
                 className="send-btn"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 15px #4cc9f0" }}
                 whileTap={{ scale: 0.95 }}
               >
                 Send Message <i className="fas fa-paper-plane"></i>
               </motion.button>
+
+              {result && <p className="form-result">{result}</p>}
             </motion.form>
           </div>
-
-          {/* Result Message */}
-          {result && <p className="form-result">{result}</p>}
         </motion.div>
       </div>
     </section>

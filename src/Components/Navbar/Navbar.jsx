@@ -28,7 +28,7 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '/home' },
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
     { name: 'Services', href: '#services' },
@@ -80,7 +80,7 @@ const Navbar = () => {
     >
       <div className="nav-container">
         <motion.a
-          href="#home"
+          href="/home"
           className="logo"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
