@@ -89,16 +89,16 @@ const Projects = () => {
         "A personal portfolio website showcasing skills and projects with smooth animations and dark theme UI.",
       image: "/portfolio.png",
       technologies: ["React", "HTML", "CSS", "JavaScript", "Framer Motion", "Node.js"],
-      link: "#",
+      link: "https://arshitportfolio.netlify.app/",
       color: "#00b894",
     },
     {
-      title: "Social Media Dashboard",
+      title: "Pooja Jewellers Website",
       description:
-        "A comprehensive social media analytics dashboard with interactive charts and reporting features.",
-      image: "/social.png",
-      technologies: ["React", "D3.js", "Node.js", "Express"],
-      link: "#",
+        "A comprehensive e-commerce website for a jewelry store with product listings, and location map and contact form... client want deployment from GoDaddy.",
+      image: "/pooja.png",
+      technologies: ["GoDaddy" , "Tools" , "SEO" , "HTML" , "CSS"],
+      link: "https://poojajewellers.co.in/",
       color: "#6c5ce7",
     },
   ];
