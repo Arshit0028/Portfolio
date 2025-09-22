@@ -114,7 +114,7 @@ const Hero = () => {
           >
             <FaLinkedin /> Connect
           </a>
-          <a href="/Resume.pdf" className="btn secondary-btn" download>
+          <a href="/Arshit_Resume_2025.pdf" className="btn secondary-btn" download>
             <FaFileDownload /> Resume
           </a>
           <a
