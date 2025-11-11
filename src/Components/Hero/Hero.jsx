@@ -1,15 +1,16 @@
-import React, { useRef, useMemo, useEffect, useState } from "react";
+import React, { useRef, useMemo, useEffect, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Line } from "@react-three/drei";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaFileDownload } from "react-icons/fa";
 import "./Hero.css";
 
-// Optimized Polygon Mesh Background
+// Optimized & Smooth Polygon Mesh Background
 const PolygonMesh = () => {
   const meshRef = useRef();
-  const numPoints = 50; // Reduce points for performance
+  const numPoints = 50; // tuned for performance + look
 
+  // positions buffer
   const points = useMemo(() => {
     const temp = [];
     for (let i = 0; i < numPoints; i++) {
@@ -20,8 +21,9 @@ const PolygonMesh = () => {
       );
     }
     return new Float32Array(temp);
-  }, []);
+  }, [numPoints]);
 
+  // convert to array of [x,y,z] for Line
   const linePoints = useMemo(() => {
     const arr = [];
     for (let i = 0; i < points.length; i += 3) {
@@ -30,12 +32,35 @@ const PolygonMesh = () => {
     return arr;
   }, [points]);
 
-  useFrame(({ mouse }) => {
+  // internal smooth state for mouse-follow and rotation (lerp)
+  const target = useRef({ x: 0, y: 0, rx: 0, ry: 0 });
+  const current = useRef({ x: 0, y: 0, rx: 0, ry: 0 });
+
+  useFrame(({ mouse, clock }) => {
+    // update target gently based on mouse
+    target.current.x = mouse.x * 0.8;
+    target.current.y = -mouse.y * 0.6;
+    // small automatic rotation over time
+    target.current.ry = Math.sin(clock.getElapsedTime() * 0.12) * 0.25;
+    target.current.rx = Math.cos(clock.getElapsedTime() * 0.07) * 0.12;
+
+    // lerp helper
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const ease = 0.06; // smaller -> smoother/slower
+    current.current.x = lerp(current.current.x, target.current.x, ease);
+    current.current.y = lerp(current.current.y, target.current.y, ease);
+    current.current.ry = lerp(current.current.ry, target.current.ry, ease);
+    current.current.rx = lerp(current.current.rx, target.current.rx, ease);
+
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.0008;
-      meshRef.current.rotation.x += 0.0004;
-      meshRef.current.position.x = mouse.x * 0.5;
-      meshRef.current.position.y = -mouse.y * 0.5;
+      meshRef.current.rotation.y = current.current.ry;
+      meshRef.current.rotation.x = current.current.rx;
+      // small subtle parallax movement
+      meshRef.current.position.x = current.current.x;
+      meshRef.current.position.y = current.current.y;
+      // add a tiny, slow breathing scale
+      const scale = 1 + Math.sin(clock.getElapsedTime() * 0.3) * 0.015;
+      meshRef.current.scale.set(scale, scale, scale);
     }
   });
 
@@ -48,44 +73,56 @@ const PolygonMesh = () => {
           sizeAttenuation
           depthWrite={false}
           transparent
-          opacity={0.5}
+          opacity={0.55}
         />
       </Points>
+
       <Line
         points={linePoints}
         color="#a855f7"
-        lineWidth={0.25}
+        lineWidth={0.2}
         transparent
-        opacity={0.15}
+        opacity={0.12}
       />
     </group>
   );
 };
 
 const Hero = () => {
-  const [showMesh, setShowMesh] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
+  // delay mount for a single-frame mount to avoid initial stutter on some devices
   useEffect(() => {
-    const id = requestAnimationFrame(() => setShowMesh(true));
+    const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
   }, []);
 
   return (
     <section className="hero-section">
-      {/* Canvas Background */}
-      <div className="canvas-container">
-        <Canvas camera={{ position: [0, 0, 15], fov: 75 }} gl={{ alpha: true }}>
-          <ambientLight intensity={0.5} />
-          {showMesh && <PolygonMesh />}
+      {/* Canvas Background with smooth entrance using framer-motion */}
+      <motion.div
+        className="canvas-container"
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        aria-hidden
+      >
+        <Canvas
+          camera={{ position: [0, 0, 15], fov: 75 }}
+          gl={{ alpha: true, antialias: true }}
+          dpr={[1, 1.5]}
+        >
+          <ambientLight intensity={0.6} />
+          <Suspense fallback={null}>{mounted && <PolygonMesh />}</Suspense>
         </Canvas>
-      </div>
+      </motion.div>
 
       {/* Hero Content */}
       <div className="hero-content">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="hero-title"
         >
           Hi, I’m <span className="highlight">Arshit Dhiman</span> 👋
@@ -94,16 +131,16 @@ const Hero = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.14 }}
           className="hero-subtitle"
         >
           Full Stack Developer & Web Enthusiast
         </motion.h2>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.28 }}
           className="hero-buttons"
         >
           <a
@@ -114,7 +151,11 @@ const Hero = () => {
           >
             <FaLinkedin /> Connect
           </a>
-          <a href="/Arshit_Resume_2025.pdf" className="btn secondary-btn" download>
+          <a
+            href="/Arshit_Resume_2025.pdf"
+            className="btn secondary-btn"
+            download
+          >
             <FaFileDownload /> Resume
           </a>
           <a

@@ -18,7 +18,11 @@ const Contact = () => {
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   const handleSubmit = async (e) => {
@@ -56,7 +60,9 @@ const Contact = () => {
           <motion.div className="section-header" variants={itemVariants}>
             <h2 className="section-title">Let’s Connect</h2>
             <p className="section-description">
-              Open to job opportunities and collaborations. Drop me a message anytime! I’d love to hear from you and explore new opportunities together.
+              Open to job opportunities and collaborations. Drop me a message
+              anytime! I’d love to hear from you and explore new opportunities
+              together.
             </p>
           </motion.div>
 
@@ -67,7 +73,7 @@ const Contact = () => {
               <div className="info-card glass">
                 <i className="fas fa-envelope"></i>
                 <h3>Email</h3>
-                <p>iamarshit2328@gmail.com</p>
+                <p>arshitworkmail@gmail.com</p>
               </div>
               <div className="info-card glass">
                 <i className="fas fa-map-marker-alt"></i>
@@ -88,16 +94,35 @@ const Contact = () => {
               onSubmit={handleSubmit}
             >
               <div className="form-group">
-                <input type="text" name="name" placeholder="Your Name" required />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                />
               </div>
               <div className="form-group">
-                <input type="email" name="email" placeholder="Your Email" required />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  required
+                />
               </div>
               <div className="form-group">
-                <input type="text" name="subject" placeholder="Subject" required />
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Subject"
+                  required
+                />
               </div>
               <div className="form-group">
-                <textarea name="message" placeholder="Your Message" required></textarea>
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  required
+                ></textarea>
               </div>
 
               <motion.button

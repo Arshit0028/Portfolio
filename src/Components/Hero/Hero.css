@@ -1,3 +1,6 @@
+/* --------------------------
+   Base Hero Section
+   -------------------------- */
 .hero-section {
   position: relative;
   width: 100%;
@@ -9,7 +12,9 @@
   align-items: center; /* Fully center content vertically */
 }
 
-/* Canvas Background */
+/* --------------------------
+   Canvas Background
+   -------------------------- */
 .canvas-container {
   position: absolute;
   top: 0;
@@ -20,9 +25,32 @@
   pointer-events: none;
   filter: blur(1px);
   opacity: 0.6;
+  will-change: transform, opacity;
+  transform-origin: center;
+  /* breathing / subtle parallax scale — keeps things alive but very gentle */
+  animation: canvas-breathe 9s ease-in-out infinite;
+  transition: opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1);
 }
 
-/* Hero Content */
+/* Don't let canvas blur cause performance jank on low end — use a tiny blur only */
+.canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* subtle scale / pulse for background */
+@keyframes canvas-breathe {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+/* --------------------------
+   Hero Content (Entrance)
+   -------------------------- */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -32,35 +60,101 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  /* content entrance: fade + slide up for a smooth first impression */
+  opacity: 0;
+  transform: translateY(8px);
+  animation: content-entrance 0.9s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: 0.12s;
 }
 
-/* Hero Title */
+@keyframes content-entrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------
+   Hero Title / Subtitle
+   -------------------------- */
 .hero-title {
   font-size: 4rem;
   font-weight: 900;
   line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.02em;
+
+  /* slight staggered text entrance using transform + opacity for smoothness */
+  opacity: 0;
+  transform: translateY(6px) scale(0.998);
+  animation: title-entrance 0.7s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: 0.25s;
+}
+
+@keyframes title-entrance {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .highlight {
   background: linear-gradient(90deg, #38bdf8, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
+  /* a subtle shine on load (very small) */
+  background-size: 200% 100%;
+  animation: highlight-shimmer 3.2s ease-in-out infinite alternate;
+  animation-delay: 0.6s;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Subtitle */
+@keyframes highlight-shimmer {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
 .hero-subtitle {
   font-size: 2rem;
   margin-top: 0.8rem;
   color: #94a3b8;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: subtitle-entrance 0.7s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: 0.36s;
 }
 
-/* Buttons */
+@keyframes subtitle-entrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------
+   Buttons: micro-interactions
+   -------------------------- */
 .hero-buttons {
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: buttons-entrance 0.7s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: 0.46s;
+}
+
+@keyframes buttons-entrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .btn {
@@ -71,16 +165,31 @@
   gap: 0.5rem;
   align-items: center;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 180ms cubic-bezier(.22,.9,.28,1), box-shadow 180ms ease, background 220ms ease, color 220ms ease;
+  transform: translateZ(0); /* GPU hint */
+  will-change: transform, box-shadow;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+/* hover/press interactions */
+.btn:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.45);
+}
+.btn:active {
+  transform: translateY(-1px) scale(0.998);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.35);
 }
 
 /* Button Styles */
 .primary-btn {
   background: #1e293b;
   color: #38bdf8;
+  border: 1px solid rgba(56,189,248,0.06);
 }
 .primary-btn:hover {
   background: #0f172a;
+  color: #bff0ff;
 }
 
 .secondary-btn {
@@ -90,6 +199,7 @@
 }
 .secondary-btn:hover {
   background: #1e293b;
+  color: #e6f9ff;
 }
 
 .ghost-btn {
@@ -101,8 +211,26 @@
   border-color: #38bdf8;
   color: #38bdf8;
 }
-/* Responsive Hero Section */
 
+/* --------------------------
+   Accessibility: Reduced motion
+   -------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .canvas-container,
+  .hero-content,
+  .hero-title,
+  .hero-subtitle,
+  .hero-buttons,
+  .highlight {
+    animation: none !important;
+    transition: none !important;
+  }
+  .btn { transition: none !important; transform: none !important; box-shadow: none !important; }
+}
+
+/* --------------------------
+   Responsive Rules (kept & slightly tuned)
+   -------------------------- */
 /* Tablets & small laptops */
 @media (max-width: 1024px) {
   .hero-title {
@@ -158,4 +286,7 @@
     width: 100%;
     justify-content: center;
   }
+
+  /* On very small screens reduce canvas motion to save battery & perf */
+  .canvas-container { animation-duration: 14s; filter: blur(0.6px); opacity: 0.5; }
 }
