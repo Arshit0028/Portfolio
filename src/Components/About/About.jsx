@@ -183,16 +183,16 @@ const About = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div className="timeline-content">
-                  <h4>Freelance Full-Stack Developer</h4>
-                  <p className="timeline-company">Self-Employed</p>
-                  <p className="timeline-date">2023 - Present</p>
+                  <h4>Mern Stack Developer</h4>
+                  <p className="timeline-company">
+                    Future INn-Tech Corporation
+                  </p>
+                  <p className="timeline-date">July 2025 - Present</p>
                   <p className="timeline-description">
                     Worked with clients to design and develop websites,
                     dashboards, and custom tools. Handled end-to-end development
-                    including UI, backend, and deployment.I’m a passionate
-                    Freelance MERN Stack and React Developer working
-                    independently since 2023. I specialize in building
-                    responsive, modern web applications using MongoDB,
+                    including UI, backend, and deployment. I specialize in
+                    building responsive, modern web applications using MongoDB,
                     Express.js, React, and Node.js, with a focus on clean code,
                     UI/UX, and performance optimization.
                   </p>
@@ -210,12 +210,35 @@ const About = () => {
                 <div className="timeline-content">
                   <h4>Web Developer</h4>
                   <p className="timeline-company">Zudio Tech.</p>
-                  <p className="timeline-date">April 2025 - July 2</p>
+                  <p className="timeline-date">April 2025 - July 2025</p>
                   <p className="timeline-description">
                     Collaborated with clients to define project scopes and
                     deliverables, ensuring alignment with their goals. Utilised
                     various programming languages and tools to create efficient
                     software solutions tailored to client needs.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Freelance on Top */}
+              <motion.div
+                className="timeline-item"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="timeline-content">
+                  <h4>Freelance Full-Stack Developer</h4>
+                  <p className="timeline-company">Self-Employed</p>
+                  <p className="timeline-date">2023 - Present</p>
+                  <p className="timeline-description">
+                    Worked with clients to design and develop websites,
+                    dashboards, and custom tools. Handled end-to-end development
+                    including UI, backend, and deployment. I specialize in
+                    building responsive, modern web applications using MongoDB,
+                    Express.js, React, and Node.js, with a focus on clean code,
+                    UI/UX, and performance optimization.
                   </p>
                 </div>
               </motion.div>

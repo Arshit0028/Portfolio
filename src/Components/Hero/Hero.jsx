@@ -102,8 +102,8 @@ const Hero = () => {
       {/* Canvas Background with smooth entrance using framer-motion */}
       <motion.div
         className="canvas-container"
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 1, scale: 8 }}
+        animate={{ opacity: 1, scale: 0.82 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         aria-hidden
       >
@@ -112,7 +112,7 @@ const Hero = () => {
           gl={{ alpha: true, antialias: true }}
           dpr={[1, 1.5]}
         >
-          <ambientLight intensity={0.6} />
+          <ambientLight intensity={40} />
           <Suspense fallback={null}>{mounted && <PolygonMesh />}</Suspense>
         </Canvas>
       </motion.div>
