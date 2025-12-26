@@ -175,7 +175,7 @@ const Hero = () => {
             </a>
 
             <a
-              href="/Arshit_Resume_2025.pdf"
+              href="/Arshit_Resume_2026.pdf"
               className="btn secondary-btn"
               download
             >
