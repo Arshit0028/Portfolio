@@ -2,12 +2,15 @@ import React, { useRef, useMemo, useEffect, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Line } from "@react-three/drei";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+
 import {
   FaGithub,
   FaLinkedin,
   FaFileDownload,
   FaStar,
   FaStarHalfAlt,
+  FaChevronDown,
 } from "react-icons/fa";
 import "./Hero.css";
 
@@ -124,6 +127,46 @@ const Hero = () => {
     return () => cancelAnimationFrame(id);
   }, []);
 
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+      titleRef.current,
+      {
+        y: 140,
+        opacity: 0,
+        filter: "blur(10px)",
+        scale: 0.92,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        scale: 1,
+        duration: 1.1,
+        ease: "power4.out",
+      }
+    ).fromTo(
+      subtitleRef.current,
+      {
+        y: 80,
+        opacity: 0,
+        filter: "blur(7px)",
+      },
+      {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.9,
+        ease: "power3.out",
+      },
+      "-=0.4" // overlaps animations slightly
+    );
+  }, []);
+
   return (
     <>
       {/* ================= HERO SECTION ================= */}
@@ -141,19 +184,13 @@ const Hero = () => {
         </motion.div>
 
         <div className="hero-content">
-          <motion.h1
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="hero-title"
-          >
+          <motion.h1 ref={titleRef} initial={false} className="hero-title">
             Hi, I’m <span className="highlight">Arshit Dhiman</span> 👋
           </motion.h1>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.14 }}
+            ref={subtitleRef}
+            initial={false}
             className="hero-subtitle"
           >
             Full Stack Developer & Web Enthusiast
@@ -190,6 +227,22 @@ const Hero = () => {
             >
               <FaGithub /> GitHub
             </a>
+          </motion.div>
+
+          {/* ================= PREMIUM DOWN ARROW ================= */}
+          <motion.div
+            className="scroll-arrow"
+            initial={{ y: 0, opacity: 0.8 }}
+            animate={{ y: 14, opacity: 1 }}
+            transition={{
+              repeat: Infinity,
+              repeatType: "reverse",
+              duration: 1,
+              ease: "easeInOut",
+            }}
+          >
+            <span className="pulse-ring"></span>
+            <FaChevronDown className="arrow-icon" />
           </motion.div>
         </div>
       </section>

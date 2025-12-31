@@ -8,13 +8,23 @@
 }
 
 html, body {
-    height: 100%;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at center, #1c1c2b 0%, #0a0a0f 100%);
-    color: #e0e0e0;
-    scroll-behavior: smooth;
-    overflow-x: hidden; /* prevent horizontal scroll */
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  color: #e0e0e0;
+
+  /* smooth scrolling everywhere */
+  scroll-behavior: smooth;
+
+  /* prevent horizontal overflow */
+  overflow-x: hidden;
+
+  /* better scrolling on touch devices */
+  -webkit-overflow-scrolling: touch;
+
+  /* prevents accidental text jank during scroll */
+  overscroll-behavior: none;
 }
 
 /* Links */
