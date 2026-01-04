@@ -21,6 +21,7 @@
   font-size: 3rem;
   font-weight: 800;
   background: linear-gradient(145deg, #4cc9f0, #7209b7);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
@@ -29,6 +30,7 @@
 .section-description {
   font-size: 1.1rem;
   color: #b5b5b5;
+  margin-bottom: 3rem;
 }
 
 /* Contact Grid */

@@ -138,13 +138,13 @@ const Hero = () => {
       {
         y: 140,
         opacity: 0,
-        filter: "blur(10px)",
+        filter: " brightness(0%) contrast(120%) ",
         scale: 0.92,
       },
       {
         y: 0,
         opacity: 1,
-        filter: "blur(0px)",
+        filter: " brightness(100%) contrast(150%) ",
         scale: 1,
         duration: 1.1,
         ease: "power4.out",
@@ -154,16 +154,16 @@ const Hero = () => {
       {
         y: 80,
         opacity: 0,
-        filter: "blur(7px)",
+        filter: " brightness(0%) ",
       },
       {
         y: 0,
         opacity: 1,
-        filter: "blur(0px)",
+        filter: " brightness(100%) ",
         duration: 0.9,
         ease: "power3.out",
       },
-      "-=0.4" // overlaps animations slightly
+      "-=0.3" // overlaps animations slightly
     );
   }, []);
 
@@ -195,6 +195,18 @@ const Hero = () => {
           >
             Full Stack Developer & Web Enthusiast
           </motion.h2>
+
+          <motion.h3
+            ref={subtitleRef}
+            initial={false}
+            className="hero-description"
+          >
+            Web Developer crafting high-performance, responsive websites. I turn
+            ideas into polished digital products, improve user experience, and
+            deliver solutions aligned with business goals. Experienced in
+            real-world projects, I focus on clean code, strong UI/UX, and
+            measurable impact.
+          </motion.h3>
 
           <motion.div
             initial={{ opacity: 0, y: 8 }}
