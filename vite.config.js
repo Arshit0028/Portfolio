@@ -1,10 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import viteCompression from "vite-plugin-compression";
 
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
 
     // generates .gz and .br compressed assets for production
     viteCompression({

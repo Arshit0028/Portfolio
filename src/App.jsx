@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ShaderAnimation } from "./Components/ui/shader-animation.tsx";
 
 // Lazy load all components
 const Navbar = lazy(() => import("./Components/Navbar/Navbar.jsx"));
@@ -34,6 +35,7 @@ const App = () => {
         <div className="app">
           <Navbar />
           <main>
+            <ShaderAnimation />
             <Hero />
             <About />
             <Services />
