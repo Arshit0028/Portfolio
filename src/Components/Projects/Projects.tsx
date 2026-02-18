@@ -11,35 +11,23 @@ import {
 const projects = [
   {
     title: "MediGo",
-    description:
-      "Doctor appointment booking platform with secure payments, appointment scheduling, and a smooth end-to-end user experience.",
     image: "/medigo.png",
     live: "https://medigoo.netlify.app/",
-    tech: ["React", "Node.js", "MongoDB", "Stripe"],
   },
   {
     title: "Portfolio",
-    description:
-      "Personal portfolio showcasing projects, skills, and experience with smooth animations and a modern dark UI.",
     image: "/portfolio.png",
     live: "https://arshitportfolio.netlify.app/",
-    tech: ["React", "Framer Motion", "Tailwind CSS"],
   },
   {
     title: "Pooja Jewellers",
-    description:
-      "Premium business website designed to improve brand presence, SEO performance, and local discoverability.",
     image: "/pooja.png",
     live: "https://poojajewellers.co.in/",
-    tech: ["HTML", "CSS", "SEO"],
   },
   {
     title: "OoMamiMeats",
-    description:
-      "E-commerce platform for fresh meat and essentials with optimized performance and conversion-focused UI.",
     image: "/mami.png",
     live: "https://www.oomamimeats.com",
-    tech: ["Shopify", "Liquid", "SEO", "GA4"],
   },
 ];
 
@@ -49,7 +37,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="bg-black text-white py-48 space-y-48"
+      className="bg-black text-white py-32 md:py-44 space-y-40 md:space-y-48"
     >
       {projects.map((project) => (
         <ScrollAnimatedCard key={project.title} {...project} />
@@ -62,22 +50,18 @@ export default function Projects() {
 
 function ScrollAnimatedCard({
   title,
-  description,
   image,
   live,
-  tech,
 }: {
   title: string;
-  description: string;
   image: string;
   live: string;
-  tech: string[];
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start 85%", "end 15%"],
   });
 
   const [isMobile, setIsMobile] = useState(false);
@@ -89,136 +73,105 @@ function ScrollAnimatedCard({
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  /* ===== Animations (FIXED) ===== */
-  const rotate = useTransform(scrollYProgress, [0, 1], [35, 0]);
+  /* ===== Animations (UNCHANGED) ===== */
+  const rotate = useTransform(scrollYProgress, [0, 1], [25, 0]);
   const scale = useTransform(
     scrollYProgress,
     [0, 1],
-    isMobile ? [0.92, 1] : [1.04, 1]
+    isMobile ? [0.96, 1] : [1.05, 1]
   );
-  const opacity = useTransform(scrollYProgress, [0, 80], [80, 1]);
-  const descY = useTransform(scrollYProgress, [0, 0.8], [80, 0]); // ✅ small value = no jump
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
 
   return (
     <section
       ref={ref}
-      className="relative flex flex-col items-center justify-center min-h-[95vh] px-4 md:px-0"
-      style={{ perspective: "1200px" }}
+      className="relative flex flex-col items-center justify-center min-h-[95vh] px-6"
+      style={{ perspective: "1600px" }}
     >
-      {/* ===== Title (NO Y-MOTION) ===== */}
-      <motion.div
-        style={{ opacity }}
-        className="text-4xl font-semibold text-black dark:text-white"
-      >
-        <h2
-          className="
-            text-4xl md:text-5xl
-            font-semibold
-            tracking-tight
-            leading-[2.6rem]
-            md:leading-[3rem]
-          "
-        >
-          {title}
-        </h2>
-      </motion.div>
+      {/* Subtle Background Depth */}
+      <div className="absolute -z-10 inset-0 flex justify-center">
+        <div className="w-[600px] h-[600px] bg-gradient-to-br from-white/5 via-white/3 to-transparent rounded-full blur-3xl opacity-40" />
+      </div>
 
-      {/* ===== Card ===== */}
-      <AnimatedCard rotate={rotate} scale={scale}>
-        <img
+      {/* Title */}
+      <motion.h2
+        style={{ opacity }}
+        className="text-5xl md:text-6xl font-semibold tracking-[-0.04em] mb-14 text-center"
+      >
+        {title}
+      </motion.h2>
+
+      {/* Floating Card */}
+      <AnimatedCard rotate={rotate} scale={scale} live={live}>
+        <motion.img
           src={image}
           alt={title}
-          className="w-full h-full object-cover"
+          style={{ scale: imageScale }}
+          className="w-full h-full object-cover object-top"
         />
       </AnimatedCard>
-
-      {/* ===== Description + Tech + CTA ===== */}
-      <motion.div
-        style={{ opacity, translateY: descY }}
-        className="mt-10 max-w-xl text-center space-y-6"
-      >
-        <p className="text-zinc-400 text-[17px] leading-relaxed">
-          {description}
-        </p>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap justify-center gap-2">
-          {tech.map((item) => (
-            <span
-              key={item}
-              className="
-                px-3 py-1
-                text-sm
-                rounded-full
-                border border-white/10
-                bg-white/5
-                text-zinc-300
-              "
-            >
-              {item}
-            </span>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <a
-          href={live}
-          target="_blank"
-          rel="noreferrer"
-          className="
-       inline-flex items-center gap-2
-  px-6 py-2.5
-  rounded-full
-  text-sm font-medium
-  border border-white/20
-  text-white
-  hover:bg-white hover:text-black
-  transition-all duration-300
-          "
-        >
-          View Live
-          <span>→</span>
-        </a>
-      </motion.div>
     </section>
   );
 }
 
-/* ================= CARD ================= */
+/* ================= FLOATING CARD ================= */
 
 function AnimatedCard({
   rotate,
   scale,
   children,
+  live,
 }: {
   rotate: MotionValue<number>;
   scale: MotionValue<number>;
   children: React.ReactNode;
+  live: string;
 }) {
   return (
     <motion.div
       style={{ rotateX: rotate, scale }}
       className="
-        w-full max-w-5xl
-        rounded-[28px]
-        bg-gradient-to-b from-zinc-900 to-zinc-950
-        border border-white/10
-        shadow-[0_50px_140px_rgba(0,0,0,0.65)]
-        p-4 md:p-6
-        will-change-transform
+        relative group
+        w-full max-w-6xl
+        rounded-[36px]
+        p-[1px]
+        bg-gradient-to-r from-white/15 via-white/5 to-white/15
+        shadow-[0_50px_150px_rgba(0,0,0,0.8)]
       "
     >
-      <div
-        className="
-          h-[22rem] md:h-[32rem]
-          w-full
-          overflow-hidden
-          rounded-2xl
-          bg-zinc-950
-          border border-white/5
-        "
-      >
+      <div className="relative h-[24rem] md:h-[38rem] w-full overflow-hidden rounded-[34px] bg-zinc-950">
+        
         {children}
+
+        {/* Dark Overlay on Hover */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500" />
+
+        {/* Center Button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.a
+            href={live}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="
+              opacity-0 group-hover:opacity-100
+              transition-all duration-500
+              px-10 py-3.5
+              rounded-full
+              bg-white
+              text-black
+              text-sm
+              tracking-[0.2em]
+              uppercase
+              font-medium
+              backdrop-blur-xl
+            "
+          >
+            View Project →
+          </motion.a>
+        </div>
       </div>
     </motion.div>
   );
