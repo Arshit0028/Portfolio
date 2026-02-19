@@ -32,16 +32,6 @@ html, body {
   overscroll-behavior: none;
 }
 
-/* Links */
-a {
-    text-decoration: none;
-    color: #38bdf8;
-    transition: color 0.3s ease;
-}
-a:hover {
-    color: #7f5af0;
-}
-
 /* Lists */
 ul, ol {
     list-style: none;
@@ -94,47 +84,6 @@ input:focus, textarea:focus, select:focus {
     border-color: #38bdf8;
 }
 
-/* Buttons */
-.btn {
-    padding: 0.8rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-/* Primary Button */
-.btn-primary {
-    background: #38bdf8;
-    color: #0a0a0f;
-}
-.btn-primary:hover {
-    opacity: 0.85;
-}
-
-/* Secondary Button */
-.btn-secondary {
-    background: transparent;
-    border: 1px solid #38bdf8;
-    color: #38bdf8;
-}
-.btn-secondary:hover {
-    background: rgba(56, 189, 248, 0.1);
-}
-
-/* Ghost Button */
-.btn-ghost {
-    background: transparent;
-    border: 1px solid #7f5af0;
-    color: #7f5af0;
-}
-.btn-ghost:hover {
-    background: rgba(127, 90, 240, 0.1);
-}
 
 /* Utility Classes */
 .text-center { text-align: center; }

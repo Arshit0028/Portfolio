@@ -29,6 +29,11 @@ const projects = [
     image: "/mami.png",
     live: "https://www.oomamimeats.com",
   },
+  {
+    title: "TheFirstPick",
+    image: "/firstpick.png",
+    live: "https://thedfirstpick.in",
+  },
 ];
 
 /* ================= PROJECTS SECTION ================= */
@@ -37,7 +42,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="bg-black text-white py-32 md:py-44 space-y-40 md:space-y-48"
+      className="bg-black text-white py-16 md:py-44 space-y-20 md:space-y-48"
     >
       {projects.map((project) => (
         <ScrollAnimatedCard key={project.title} {...project} />
@@ -86,7 +91,7 @@ function ScrollAnimatedCard({
   return (
     <section
       ref={ref}
-      className="relative flex flex-col items-center justify-center min-h-[95vh] px-6"
+      className="relative flex flex-col items-center justify-center min-h-[70vh] md:min-h-[95vh] px-4 md:px-6"
       style={{ perspective: "1600px" }}
     >
       {/* Subtle Background Depth */}
@@ -97,7 +102,7 @@ function ScrollAnimatedCard({
       {/* Title */}
       <motion.h2
         style={{ opacity }}
-        className="text-5xl md:text-6xl font-semibold tracking-[-0.04em] mb-14 text-center"
+        className="text-4xl md:text-6xl font-semibold tracking-[-0.04em] mb-10 md:mb-14 text-center"
       >
         {title}
       </motion.h2>
@@ -140,38 +145,59 @@ function AnimatedCard({
         shadow-[0_50px_150px_rgba(0,0,0,0.8)]
       "
     >
-      <div className="relative h-[24rem] md:h-[38rem] w-full overflow-hidden rounded-[34px] bg-zinc-950">
+      <div className="relative h-[18rem] sm:h-[22rem] md:h-[38rem] w-full overflow-hidden rounded-[28px] md:rounded-[34px] bg-zinc-950">
         
         {children}
 
         {/* Dark Overlay on Hover */}
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500" />
+<div className="absolute inset-0 flex items-center justify-center">
+  <motion.a
+    href={live}
+    target="_blank"
+    rel="noreferrer"
+    whileHover={{ scale: 1.035 }}
+    whileTap={{ scale: 1.98 }}
+    style={{ WebkitTapHighlightColor: "transparent" }}
+    className="
+      opacity-0 group-hover:opacity-100
+      transition-all duration-500
+      
+      px-9 md:px-11
+      py-2.5
+      
+      rounded-full
+      
+      bg-black/90
+      backdrop-blur-2xl
+      
+      border border-white/12
+      
+      text-white
+      text-[13.5px]
+      font-medium
+      tracking-[0.04em]
+      
+      shadow-[inset_0_0.5px_0_rgba(255,255,255,0.08)]
+      
+      hover:border-white/25
+      hover:bg-black/75
+      
+      no-underline
+      outline-none
+      focus:outline-none
+    "
+  >
+    <span className="flex items-center gap-2">
+      View Project
+      <span className="text-base transition-transform duration-300 group-hover:translate-x-1">
+        →
+      </span>
+    </span>
+  </motion.a>
+</div>
 
-        {/* Center Button */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.a
-            href={live}
-            target="_blank"
-            rel="noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="
-              opacity-0 group-hover:opacity-100
-              transition-all duration-500
-              px-10 py-3.5
-              rounded-full
-              bg-white
-              text-black
-              text-sm
-              tracking-[0.2em]
-              uppercase
-              font-medium
-              backdrop-blur-xl
-            "
-          >
-            View Project →
-          </motion.a>
-        </div>
+
       </div>
     </motion.div>
   );
