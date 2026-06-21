@@ -166,7 +166,7 @@ export function ShaderAnimation() {
           </a>
 
           <a
-            href="/NEW_RESUME.pdf"
+            href="/DEMO.pdf"
             download
             className="btn secondary-btn"
           >
